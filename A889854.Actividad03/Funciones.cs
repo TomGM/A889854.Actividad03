@@ -19,6 +19,7 @@ namespace A889854.Actividad03
             double debeAgregado = 0;
             double haberAgregado = 0;
             int contregistros = 0;
+            DateTime? ultimaFecha = null;
 
             // si la cuenta no existe en libro diario, no hace nada
 
@@ -46,15 +47,17 @@ namespace A889854.Actividad03
                             debeAgregado += item.Debe;
                             haberAgregado += item.Haber;
                             contregistros++;
-                            asientosAgregar.Add(new AsientoMayor(nroCuenta, item.Fecha, debeAgregado, haberAgregado));
+                            ultimaFecha = item.Fecha;                            
                         }
+                        asientosAgregar.Clear();
+                        asientosAgregar.Add(new AsientoMayor(nroCuenta, item.Fecha, debeAgregado, haberAgregado));
 
                     }
 
                     // muestra los datos usados para la actualizacion
                     if (contregistros > 0)
                     {
-                        Console.WriteLine("Se actualizó el libro mayor con la información de los siguientes " + contregistros + " asientos: ");
+                        Console.WriteLine("Se actualizó el libro mayor con la información de " + contregistros + " asientos del libro diario, este es el nuevo estado de la cuenta:");
 
                         foreach (var obj in asientosAgregar)
                         {
@@ -93,14 +96,16 @@ namespace A889854.Actividad03
                             debeAgregado += item.Debe;
                             haberAgregado += item.Haber;
                             contregistros++;
-                            asientosAgregar.Add(new AsientoMayor(nroCuenta, item.Fecha, debeAgregado, haberAgregado));
+                            ultimaFecha = item.Fecha;
                         }
+                        asientosAgregar.Clear();
+                        asientosAgregar.Add(new AsientoMayor(nroCuenta, item.Fecha, debeAgregado, haberAgregado));
                     }
 
                     // Muestra los datos usados para la actualizacion.
                     if (contregistros > 0)
                     {
-                        Console.WriteLine("Se añadieron los siguientes " + contregistros.ToString() + " asientos al libro mayor: ");
+                        Console.WriteLine("Se añadieron los siguientes " + contregistros.ToString() + " registros al libro mayor: ");
 
                         foreach (var obj in asientosAgregar)
                         {
