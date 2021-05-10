@@ -20,13 +20,14 @@ namespace A889854.Actividad03
             double haberAgregado = 0;
             int contregistros = 0;
 
-            // si la cuenta existe en libro mayor, la actualiza
+            // si la cuenta no existe en libro diario, no hace nada
 
             if (!diarioContieneCuenta)
             {
                 Console.WriteLine("No hay asientos nuevos correspondientes a esa cuenta.");
             }
 
+            // si la cuenta existe en libro mayor, la actualiza
             else
             {
                 if (mayorContieneCuenta)
