@@ -64,9 +64,26 @@ namespace A889854.Actividad03
 
                             Console.WriteLine(obj);
 
+                            List<String> lines = new List<string>();
+                            string line;
+
+                            System.IO.StreamReader file = new System.IO.StreamReader(pathSalida);
+                            while ((line = file.ReadLine()) != null)
+                            {
+                                lines.Add(line);                                
+                            }
+                            file.Close();
+
+                            lines.RemoveAll(l => l.StartsWith(nroCuenta.ToString()));
+                            using (System.IO.StreamWriter outfile = new System.IO.StreamWriter(pathSalida))
+                            {
+                                outfile.Write(String.Join(System.Environment.NewLine, lines.ToArray()));
+                                outfile.Close();
+                            }
+
                             using (StreamWriter sw = File.AppendText(pathSalida))
                             {
-                                sw.WriteLine(obj.ToString());
+                                sw.WriteLine("\n"+obj.ToString());
                                 sw.Close();
                             }
 
@@ -143,5 +160,6 @@ namespace A889854.Actividad03
             Console.WriteLine("Presione cualquier tecla para continuar.");
             Console.ReadKey();
         }
+
     }
 }
